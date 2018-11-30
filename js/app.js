@@ -5,6 +5,7 @@
 Global Variables
  */
  const deck = document.querySelector('.deck');
+const stars = Array.from(document.querySelectorAll('.fa-star'));   // a variable to hold the starts in an array
  let moves = 0;
 
 
@@ -66,12 +67,23 @@ function movesCounter(){
   moves++;
   const movesHTML = document.querySelector('.moves');
   movesHTML.innerHTML = moves;
+  if(moves === 1){
+    removeStar();
+  }
+  if (moves === 3){
+    removeStar();
+  }
 }
 
+
 //function to remove a start (when needed)
+
+
 function removeStar(){
- const stars = document.querySelectorAll('.fa-star');
- stars[stars.length-1].style.display= "none";
+
+  stars.pop().style.display = "none";
+ // stars[stars.length-1].style.display= "none";
+ // stars.length--;
 }
 
 // function score(moves){
