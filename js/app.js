@@ -17,7 +17,6 @@ for (card of allCards){
 
 
 let flippedCards = [];
-//const deck = document.querySelector('.deck');
 deck.addEventListener('click', event => {
   let clickedCard = event.target;
   if (clickedCard.classList.contains('card') &&
@@ -51,25 +50,40 @@ function compare(){
     flippedCards[0].classList.toggle('match');
     flippedCards[1].classList.toggle('match');
     flippedCards = [];
-    moves++;
+    movesCounter ();
   } else {
       setTimeout(() => {
         flip(flippedCards[0]);
         flip(flippedCards[1]);
         flippedCards = [];
       }, 1000);
-        moves++;
+        movesCounter ();
   }
 }
 
-function score(moves){
-  const star = document.querySelectorAll('.stars li');
-  if (moves > 4){
-    star.style.display = 'none';
-  }
+//function to increase the moves counter and change the moves HTML
+function movesCounter(){
+  moves++;
+  const movesHTML = document.querySelector('.moves');
+  movesHTML.innerHTML = moves;
 }
 
-score(moves);
+//function to remove a start (when needed)
+function removeStar(){
+ const stars = document.querySelectorAll('.fa-star');
+ stars[stars.length-1].style.display= "none";
+}
+
+// function score(moves){
+//   const star = document.querySelectorAll('.stars li');
+//   if (moves > 4){
+//     star.style.display = 'none';
+//   }else {
+//     return("not 4 yet");
+//   }
+// }
+//
+// score(moves);
 
 /*
  * Display the cards on the page
