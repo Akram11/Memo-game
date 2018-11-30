@@ -1,8 +1,23 @@
 /*
  * Create a list that holds all of your cards
  */
+ /*
+Global Variables
+ */
+ const deck = document.querySelector('.deck');
+ let moves = 0;
+
+
+
+let allCards =Array.from(document.querySelectorAll('.card'));
+shuffle(allCards);
+for (card of allCards){
+  deck.appendChild(card);
+}
+
+
 let flippedCards = [];
-const deck = document.querySelector('.deck');
+//const deck = document.querySelector('.deck');
 deck.addEventListener('click', event => {
   let clickedCard = event.target;
   if (clickedCard.classList.contains('card') &&
@@ -15,14 +30,6 @@ deck.addEventListener('click', event => {
       compare(deck);
     }
   }
-   //  if(flippedCards.includes(clickedCard)){
-   //    return;
-   //  }else{
-   //  addToflippedCards(clickedCard);
-   // }
-
-
-
 });
 
 // Function to open and show a clicked card
@@ -31,12 +38,11 @@ function flip(card){
  card.classList.toggle('show');
 }
 
-// Function to push a clicked card to an Array
+// Function to push a clicked card to an Array (the "flippedCards" Array)
 function addToflippedCards(card) {
   flippedCards.push(card);
   console.log(flippedCards)
 }
-
 
 // Function to check if the clicked cards match
 
@@ -45,14 +51,26 @@ function compare(){
     flippedCards[0].classList.toggle('match');
     flippedCards[1].classList.toggle('match');
     flippedCards = [];
+    moves++;
   } else {
       setTimeout(() => {
         flip(flippedCards[0]);
         flip(flippedCards[1]);
         flippedCards = [];
       }, 1000);
+        moves++;
   }
 }
+
+function score(moves){
+  const star = document.querySelectorAll('.stars li');
+  if (moves > 4){
+    star.style.display = 'none';
+  }
+}
+
+score(moves);
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
