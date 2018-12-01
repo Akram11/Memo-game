@@ -67,10 +67,7 @@ function movesCounter(){
   moves++;
   const movesHTML = document.querySelector('.moves');
   movesHTML.innerHTML = moves;
-  if(moves === 1){
-    removeStar();
-  }
-  if (moves === 3){
+  if(moves === 12 || moves === 15 || moves === 18){
     removeStar();
   }
 }
