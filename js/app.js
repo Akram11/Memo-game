@@ -99,12 +99,10 @@ function timer(){
 }
 
 
-
-
-
 function stopTimer(){
    clearInterval(timerId);
 }
+
 
 function displayTimer(){
   let timerElm = document.querySelector('.timer');
