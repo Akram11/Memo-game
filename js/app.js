@@ -7,6 +7,10 @@ Global Variables
  const deck = document.querySelector('.deck');
 const stars = Array.from(document.querySelectorAll('.fa-star'));   // a variable to hold the starts in an array
  let moves = 0;
+ let time = 0;
+ let timerId;
+ let timerOff = true;
+ let flippedCards = [];
 
 
 
@@ -17,7 +21,7 @@ for (card of allCards){
 }
 
 
-let flippedCards = [];
+
 deck.addEventListener('click', event => {
   let clickedCard = event.target;
   if (clickedCard.classList.contains('card') &&
@@ -29,6 +33,10 @@ deck.addEventListener('click', event => {
     if(flippedCards.length === 2){
       compare(deck);
     }
+  }
+  if (timerOff){
+    timer();
+    timerOff = false;
   }
 });
 
@@ -82,6 +90,33 @@ function removeStar(){
  // stars[stars.length-1].style.display= "none";
  // stars.length--;
 }
+
+function timer(){
+   timerId = setInterval(() => {
+   time++;
+   displayTimer();
+  },1000);
+}
+
+
+
+
+
+function stopTimer(){
+   clearInterval(timerId);
+}
+
+function displayTimer(){
+  let timerElm = document.querySelector('.timer');
+  const seconds = Math.floor(time % 60);
+  const minutes = Math.floor(time / 60);
+  if (seconds < 10){
+  timerElm.innerHTML = `${minutes}:0${seconds}`;
+  }else{
+    timerElm.innerHTML = `${minutes}:${seconds}`;
+  }
+}
+
 
 // function score(moves){
 //   const star = document.querySelectorAll('.stars li');
