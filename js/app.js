@@ -5,7 +5,8 @@
 Global Variables
  */
  const deck = document.querySelector('.deck');
-const stars = Array.from(document.querySelectorAll('.fa-star'));   // a variable to hold the starts in an array
+ const stars = Array.from(document.querySelectorAll('.fa-star'));   // a variable to hold the starts in an array
+ // let numberOfStars = 3;
  let moves = 0;
  let time = 0;
  let timerId;
@@ -85,10 +86,7 @@ function movesCounter(){
 
 
 function removeStar(){
-
   stars.pop().style.display = "none";
- // stars[stars.length-1].style.display= "none";
- // stars.length--;
 }
 
 function timer(){
@@ -115,17 +113,26 @@ function displayTimer(){
   }
 }
 
+// a function to show the last score modal
+function showScoreModal() {
+  let scoreTime = document.querySelector('.modal-time');
+  let scoreStars = document.querySelector('.modal-stars');
+  let scoreMoves = document.querySelector('.modal-moves');
+  scoreTime.innerHTML = `Time = ${time}`;
+  scoreMoves.innerHTML = `Moves = ${moves}`;
+  scoreStars.innerHTML = `Stars = ${stars.length}`;
 
-// function score(moves){
-//   const star = document.querySelectorAll('.stars li');
-//   if (moves > 4){
-//     star.style.display = 'none';
-//   }else {
-//     return("not 4 yet");
-//   }
-// }
-//
-// score(moves);
+  let modal = document.querySelector('#score-modal');
+  modal.style.display = "block";
+}
+// todo:  add an addEventListener to the :
+// -modal X
+// -modal playagain
+// -reply button
+
+// Extra:
+// -better style the modal
+// -show an actual start rather than a number
 
 /*
  * Display the cards on the page
