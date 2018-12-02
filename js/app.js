@@ -12,6 +12,7 @@ Global Variables
  let timerId;
  let timerOff = true;
  let flippedCards = [];
+ let matchesNumber = 0;
 
 
 
@@ -59,8 +60,10 @@ function compare(){
   if (flippedCards[0].firstElementChild.className === flippedCards[1].firstElementChild.className){
     flippedCards[0].classList.toggle('match');
     flippedCards[1].classList.toggle('match');
-    flippedCards = [];
     movesCounter ();
+    matchesNumber++;
+    gameOver();
+    flippedCards = [];
   } else {
       setTimeout(() => {
         flip(flippedCards[0]);
@@ -113,17 +116,26 @@ function displayTimer(){
   }
 }
 
+function gameOver(){
+  if(matchesNumber === 8){
+    toggleScoreModal();
+  }
+}
+
 // a function to show the last score modal
-function showScoreModal() {
+function toggleScoreModal() {
+  finalScore();
+  let modal = document.querySelector('#score-modal');
+  modal.classList.toggle('modal-hide');
+}
+
+function finalScore(){
   let scoreTime = document.querySelector('.modal-time');
   let scoreStars = document.querySelector('.modal-stars');
   let scoreMoves = document.querySelector('.modal-moves');
   scoreTime.innerHTML = `Time = ${time}`;
   scoreMoves.innerHTML = `Moves = ${moves}`;
   scoreStars.innerHTML = `Stars = ${stars.length}`;
-
-  let modal = document.querySelector('#score-modal');
-  modal.style.display = "block";
 }
 // todo:  add an addEventListener to the :
 // -modal X

@@ -114,7 +114,7 @@ h1 {
 }
 
 .modal-background{
- display: none;
+
  position: fixed; /* Stay in place */
  z-index: 1; /* Sit on top */
  left: 0;
@@ -123,6 +123,10 @@ h1 {
  height: 100%; /* Full height */
  background-color: rgba(0,0,0,0.3);
  padding: 20%;
+}
+
+.modal-hide{
+  display: none;
 }
 
 .modal-box{
@@ -151,9 +155,16 @@ h1 {
 .modal-close {
     color: #aaaaaa;
     float: right;
-    font-size: 40px;
+    font-size: 50px;
     font-weight: bold;
+    margin: 5px;
+    vertical-align: top;
 }
+
+.modal-close:hover{
+  cursor: pointer;
+}
+
 
 .modal-box button{
   width: 100px;
