@@ -1,9 +1,4 @@
-/*
- * Create a list that holds all of your cards
- */
-/*
-Global Variables
- */
+/* Global Variables */
 const deck = document.querySelector('.deck');
 const stars = Array.from(document.querySelectorAll('.fa-star')); // a variable to hold the starts in an array
 let moves = 0;
@@ -15,11 +10,15 @@ let matchesNumber = 0;
 let allCards = Array.from(document.querySelectorAll('.card'));
 
 
-
+/* On plage load Start with initilizing the cards
+resetCards function shuffle the cards, append them to the HTML container elemnt,
+and makes sure that all the cards are on the "hidden" side */
 resetCards();
 
 
-
+/*an EventListener that responds to a click on a card
+if the card is "hidden" flips is, adds it to an array, if the array has two cards,
+call the compare function,and increase the moves by one */
 deck.addEventListener('click', event => {
   let clickedCard = event.target;
   if (clickedCard.classList.contains('card') &&
@@ -33,7 +32,7 @@ deck.addEventListener('click', event => {
       displayMovesCounter();
       removeStar();
     }
-  }
+  }// start the timer on the first click!
   if (timerOff) {
     timer();
     timerOff = false;
