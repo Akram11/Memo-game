@@ -85,8 +85,8 @@ function displayMovesCounter() {
 function removeStar() {
   if (moves === 12 || moves === 15 || moves === 18) {
     stars.pop().style.display = "none";
-    }
   }
+}
 
 function timer() {
   timerId = setInterval(() => {
@@ -132,24 +132,24 @@ function finalScore() {
   let scoreMoves = document.querySelector('.modal-moves');
   scoreTime.innerHTML = `Time = ${time}`;
   scoreMoves.innerHTML = `Moves = ${moves}`;
-  if (stars.length === 3){
+  if (stars.length === 3) {
     scoreStars.innerHTML = `Stars = <ul class="stars">
       <li><i class="fa fa-star"></i></li>
       <li><i class="fa fa-star"></i></li>
       <li><i class="fa fa-star"></i></li>
     </ul>`;
-  } else if (stars.length === 2){
-      scoreStars.innerHTML = `Stars = <ul class="stars">
+  } else if (stars.length === 2) {
+    scoreStars.innerHTML = `Stars = <ul class="stars">
         <li><i class="fa fa-star"></i></li>
         <li><i class="fa fa-star"></i></li>
       </ul>`;
-    }else if (stars.length === 1){
-        scoreStars.innerHTML = `Stars = <ul class="stars">
+  } else if (stars.length === 1) {
+    scoreStars.innerHTML = `Stars = <ul class="stars">
           <li><i class="fa fa-star"></i></li>
         </ul>`;
-      }else {
-        scoreStars.innerHTML = `Stars = no stars :(`
-      }
+  } else {
+    scoreStars.innerHTML = `Stars = no stars :(`
+  }
 }
 
 
@@ -164,8 +164,8 @@ function resetGame() {
   resetCards();
 }
 
-function resetCards(){
-  for(card of allCards){
+function resetCards() {
+  for (card of allCards) {
     card.className = 'card';
   }
   shuffle(allCards);
@@ -174,11 +174,11 @@ function resetCards(){
   }
 }
 
-function resetStars(){
+function resetStars() {
   const stars = Array.from(document.querySelectorAll('.fa-star')); // this function is only inside the globe of the function and it's different than the global one
-  for (star of stars){
+  for (star of stars) {
     star.style.display = "inline";
-    }
+  }
 }
 
 document.querySelector('.restart').addEventListener('click', resetGame);
