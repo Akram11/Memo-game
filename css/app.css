@@ -98,6 +98,18 @@ h1 {
     margin: 0 5px 0 0;
 }
 
+.stars {
+   margin: 0;
+   padding: 0;
+   display: inline-block;
+   margin: 0 5px 0 0;
+}
+
+.stars li {
+    list-style: none;
+    display: inline-block;
+}
+
 .score-panel .stars li {
     list-style: none;
     display: inline-block;
