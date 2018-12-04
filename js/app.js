@@ -1,6 +1,6 @@
 /* Global Variables */
 const deck = document.querySelector('.deck');
-const stars = Array.from(document.querySelectorAll('.fa-star')); // a variable to hold the starts in an array
+//const stars = Array.from(document.querySelectorAll('.fa-star')); // a variable to hold the starts in an array
 let moves = 0;
 let time = 0;
 let timerId;
@@ -8,6 +8,7 @@ let timerOff = true;
 let flippedCards = [];
 let matchesNumber = 0;
 let allCards = Array.from(document.querySelectorAll('.card'));
+let numberOfStarts = 3;
 
 
 /* On plage load Start with initilizing the cards
@@ -82,8 +83,15 @@ function displayMovesCounter() {
 
 
 function removeStar() {
+  const stars = Array.from(document.querySelectorAll('.fa-star'));
   if (moves === 12 || moves === 15 || moves === 18) {
-    stars.pop().style.display = "none";
+    for (star of stars){
+      if (star.style.display !== 'none'){
+        star.style.display = 'none';
+        numberOfStarts--;
+        break;
+      }
+    }
   }
 }
 
@@ -126,23 +134,25 @@ function toggleScoreModal() {
 }
 
 function finalScore() {
+  const stars = Array.from(document.querySelectorAll('.fa-star'));
+  let displayedTime = document.querySelector('.timer').innerHTML;
   let scoreTime = document.querySelector('.modal-time');
   let scoreStars = document.querySelector('.modal-stars');
   let scoreMoves = document.querySelector('.modal-moves');
-  scoreTime.innerHTML = `Time = ${time}`;
+  scoreTime.innerHTML = `Time = ${displayedTime}`;
   scoreMoves.innerHTML = `Moves = ${moves}`;
-  if (stars.length === 3) {
+  if (numberOfStarts === 3) {
     scoreStars.innerHTML = `Stars = <ul class="stars">
       <li><i class="fa fa-star"></i></li>
       <li><i class="fa fa-star"></i></li>
       <li><i class="fa fa-star"></i></li>
     </ul>`;
-  } else if (stars.length === 2) {
+  } else if (numberOfStarts === 2) {
     scoreStars.innerHTML = `Stars = <ul class="stars">
         <li><i class="fa fa-star"></i></li>
         <li><i class="fa fa-star"></i></li>
       </ul>`;
-  } else if (stars.length === 1) {
+  } else if (numberOfStarts === 1) {
     scoreStars.innerHTML = `Stars = <ul class="stars">
           <li><i class="fa fa-star"></i></li>
         </ul>`;
@@ -157,6 +167,8 @@ function resetGame() {
   moves = 0;
   time = 0;
   timerOff = true;
+  matchesNumber = 0;
+  numberOfStarts = 3;
   displayTimer();
   displayMovesCounter();
   resetStars();
@@ -173,9 +185,9 @@ function resetCards() {
   }
 }
 
-function resetStars() {
-  const stars = Array.from(document.querySelectorAll('.fa-star')); // this function is only inside the globe of the function and it's different than the global one
-  for (star of stars) {
+function resetStars(Stars) {
+  const stars = Array.from(document.querySelectorAll('.fa-star'));
+    for (star of stars) {
     star.style.display = "inline";
   }
 }
